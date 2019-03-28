@@ -64,4 +64,5 @@ if(arrAlumno){
 const alumnosMasProp = alumnos.map(alumno => {
   return {...alumno,sexo:'M'}
 })
+
 console.log("Ejer 7:",alumnosMasProp)
