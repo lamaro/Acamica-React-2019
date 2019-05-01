@@ -1,18 +1,24 @@
 import React, { Component } from 'react'
-
+import Hero from '../Hero'
+import Filters from '../Filters'
 import './index.css'
 
 class App extends Component {
   render() {
+    const today = Date()
+    const filters = {
+      dateFrom:new Date(today.valueOf() + 86400000),
+      dateTo: new Date(today.valueOf() + 86400000),
+      country: '',
+      price: 0,
+      rooms: 0
+    }
+
     return (
-      <section className="section">
-        <div className="container">
-          <h1 className="title">Hoteles</h1>
-          <p className="subtitle">
-            Mi primer proyecto en React usando <strong>Bulma</strong>!
-          </p>
-        </div>
-      </section>
+      <div>
+        <Hero filters={ filters }></Hero>
+        <Filters></Filters>
+      </div>
     )
   }
 }
