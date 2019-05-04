@@ -13,7 +13,7 @@ class OptionsFilter extends React.Component{
     render(){
         const { options, selected , icon, name } = this.props
         const listOptions = options.map(option =>  
-            <option key={`${option.value}`}>{option.name}</option>
+            <option value={`${option.value}`} key={`${option.value}`}>{option.name}</option>
         )
         return(
             <div className="field">
