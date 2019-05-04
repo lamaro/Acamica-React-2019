@@ -1,19 +1,21 @@
 import React, { Component } from 'react'
+import Moment from 'moment'
 import Hero from '../Hero'
 import Filters from '../Filters'
 import Hotels from '../Hotels'
+import HotelsEmpty from '../HotelsEmpty'
 import './index.css'
 
 class App extends Component {
   constructor(){
     super()
     this.handleFilterChange = this.handleFilterChange.bind(this) //es necesario?????
-    const today = new Date().toLocaleDateString()
-    const nextMonth = new Date().toLocaleDateString()
+    const today = new Date()
+    const dateTime = Moment(today).format("YYYY-MM-DD");
     this.state = {
       filters: {
-        dateFrom: today,
-        dateTo: nextMonth,
+        dateFrom: dateTime,
+        dateTo: dateTime,
         country: undefined,
         price: undefined,
         rooms: undefined
@@ -39,12 +41,14 @@ class App extends Component {
   handleFilterChange(payload) {
 
     const {dateFrom, dateTo, country, price, rooms} = payload
+
     const hotelsFiltered = this.state.hotels.filter(hotel => {
-      return hotel.rooms <= rooms
+      return Moment(hotel.availabilityFrom).format("YYYY-MM-DD") >= dateFrom
+      && Moment(hotel.availabilityTo).format("YYYY-MM-DD") <= dateTo
+      && hotel.rooms <= rooms
       && hotel.price == price
-      && hotel.country.trim().toLowerCase() == country.trim().toLowerCase()
+      && hotel.country.trim().toLowerCase() === country.trim().toLowerCase()
     })
-    console.log(hotelsFiltered)
 
     this.setState({
       filters: payload,
@@ -57,10 +61,12 @@ class App extends Component {
       <div>
         <Hero filters={ this.state.filters }></Hero>
         <Filters filters={ this.state.filters } onFilterChange={ this.handleFilterChange }></Filters>
-        <Hotels hotels={ this.state.hotelsFiltered.length > 0 ? this.state.hotelsFiltered : this.state.hotels } />
+        <Hotels hotels={ this.state.hotelsFiltered } /> 
       </div>
     )
   }
 }
+
+
 
 export default App
