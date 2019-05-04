@@ -17,7 +17,7 @@ class DateFilter extends React.Component {
                 <div className="control has-icons-left">
                     <input className="input" type="date" onChange={ this.handleDateChange } value={ date } name={ name } />
                     <span className="icon is-small is-left">
-                    <i className={`fas ${icon}`}></i>
+                    <i className={`fas fa-${icon}`}></i>
                     </span>
                 </div>
             </div>

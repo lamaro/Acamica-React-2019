@@ -21,7 +21,9 @@ class App extends Component {
         rooms: undefined
       },
       hotels: [],
-      hotelsFiltered: []
+      hotelsFiltered: [],
+      filterAplyed: false,
+      hotelsLoaded: false //Es necesario? de vuelta conflicto primer render
     }
   }
 
@@ -32,7 +34,7 @@ class App extends Component {
         throw Error(response.statusText);
       }
       const json = await response.json();
-      this.setState({ hotels: json });
+      this.setState({ hotels: json, hotelsLoaded: true });
     } catch (error) {
       console.log(error);
     }
@@ -45,14 +47,15 @@ class App extends Component {
     const hotelsFiltered = this.state.hotels.filter(hotel => {
       return Moment(hotel.availabilityFrom).format("YYYY-MM-DD") >= dateFrom
       && Moment(hotel.availabilityTo).format("YYYY-MM-DD") <= dateTo
-      && hotel.rooms <= rooms
-      && hotel.price == price
-      && hotel.country.trim().toLowerCase() === country.trim().toLowerCase()
+      && hotel.rooms <= (rooms != undefined ? rooms : hotel.rooms)
+      && hotel.price == (price != undefined ? price : hotel.price)
+      && hotel.country.trim().toLowerCase() === (country != undefined ? country.trim().toLowerCase() : hotel.country.trim().toLowerCase())
     })
 
     this.setState({
       filters: payload,
-      hotelsFiltered:hotelsFiltered
+      hotelsFiltered: hotelsFiltered,
+      filterAplyed: true
     }) 
   }
 
@@ -61,7 +64,10 @@ class App extends Component {
       <div>
         <Hero filters={ this.state.filters }></Hero>
         <Filters filters={ this.state.filters } onFilterChange={ this.handleFilterChange }></Filters>
-        <Hotels hotels={ this.state.hotelsFiltered } /> 
+        <Hotels 
+        hotels={ this.state.filterAplyed ? this.state.hotelsFiltered : this.state.hotels } 
+        hotelsLoaded={this.state.hotelsLoaded}
+        /> 
       </div>
     )
   }
