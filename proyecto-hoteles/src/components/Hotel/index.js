@@ -1,4 +1,5 @@
 import React from 'react'
+import Price from '../Price'
 
 const Hotel = (props) => {
    const { data } = props
@@ -7,15 +8,6 @@ const Hotel = (props) => {
         return <div />
     }
     const {name, description, photo, price, rooms, city, country} = data
-
-    // const PriceContent = price => {
-    //     let precioCadena = ''
-    //     for (let index = 0; index < price.length; index++) {
-    //        // precioCadena += '<i className="fas fa-dollar-sign" style={{margin: "0 .125em", opacity: ".25"}}></i>'
-    //        console.log(price)
-    //     }
-    //     return precioCadena
-    // }
 
     return(
         <div className="card">
@@ -43,10 +35,7 @@ const Hotel = (props) => {
                     <div className="control">
                         <div className="tags">
                             <span className="tag is-medium is-info">
-                            <i className="fas fa-dollar-sign" style={{margin: '0 .125em'}}></i>
-                            <i className="fas fa-dollar-sign" style={{margin: '0 .125em'}}></i>
-                            <i className="fas fa-dollar-sign" style={{margin: '0 .125em', opacity: '.25'}}></i>
-                            <i className="fas fa-dollar-sign" style={{margin: '0 .125em', opacity: '.25'}}></i>
+                                <Price price={price}/>
                             </span>
                         </div>
                     </div>
