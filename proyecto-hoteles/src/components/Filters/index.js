@@ -18,7 +18,6 @@ class Filters extends React.Component {
     handleOptionChange(event) {
       let payload = this.props.filters
       payload[event.target.name] = event.target.value
-      console.log(event.target.value)
       this.props.onFilterChange(payload)
     }
 

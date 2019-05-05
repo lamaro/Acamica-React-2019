@@ -2,7 +2,6 @@ import React from 'react'
 
 const Price = props => {
     const { price } =  props
-    console.log(price)
      let precioCadena = []
      for (let index = 0; index < price; index++) {
          precioCadena.push( <i key={index} className="fas fa-dollar-sign" style={{margin: "0 .125em"}}></i> )

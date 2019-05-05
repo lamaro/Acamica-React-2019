@@ -3,7 +3,7 @@ import Hotel from '../Hotel'
 import HotelsEmpty from '../HotelsEmpty'
 
 const Hotels = props => {
-    const { hotels, hotelsLoaded } = props
+    const { hotels } = props
     const hotelsRender = hotels.map(hotel => 
         <div key={hotel.slug} className="column is-one-third">
             <Hotel data={ hotel } />
@@ -14,7 +14,7 @@ const Hotels = props => {
         <section className="section" style={ {marginTop: '3em'} }>
             <div className="container">
                 {
-                hotelsRender.length > 0 || !hotelsLoaded ?
+                hotelsRender.length > 0 ?
                 <div className="columns is-multiline">
                     {hotelsRender} 
                 </div>
