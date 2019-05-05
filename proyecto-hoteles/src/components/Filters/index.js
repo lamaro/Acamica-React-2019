@@ -17,6 +17,7 @@ class Filters extends React.Component {
 
     handleOptionChange(event) {
       let payload = this.props.filters
+      
       payload[event.target.name] = event.target.value
       this.props.onFilterChange(payload)
     }
@@ -43,7 +44,7 @@ class Filters extends React.Component {
         </div>
         <div className="navbar-item">
           <OptionsFilter
-            options={ [ {value: undefined, name: 'Todos los países'}, {value: 'Argentina', name: 'Argentina'}, {value: 'Brasil', name: 'Brasil'}, {value: 'Chile', name: 'Chile'}, {value: 'Uruguay', name: 'Uruguay'} ] }
+            options={ [ {value: 'select', name: 'Todos los países'}, {value: 'Argentina', name: 'Argentina'}, {value: 'Brasil', name: 'Brasil'}, {value: 'Chile', name: 'Chile'}, {value: 'Uruguay', name: 'Uruguay'} ] }
             selected={ filters.country }
             icon="globe" 
             name="country"
@@ -52,7 +53,7 @@ class Filters extends React.Component {
         </div>
         <div className="navbar-item">
           <OptionsFilter
-            options={ [ {value: undefined, name: 'Cualquier precio'}, {value: 1, name: '$'}, {value: 2, name: '$$'}, {value: 3, name: '$$$'}, {value: 4, name: '$$$$'} ] }
+            options={ [ {value: 'select', name: 'Cualquier precio'}, {value: 1, name: '$'}, {value: 2, name: '$$'}, {value: 3, name: '$$$'}, {value: 4, name: '$$$$'} ] }
             selected={ filters.price }
             icon="dollar-sign"
             name="price"
@@ -61,7 +62,7 @@ class Filters extends React.Component {
         </div>
         <div className="navbar-item">
           <OptionsFilter
-            options={ [ {value: undefined, name: 'Cualquier tamaño'}, {value: 10, name: 'Hotel pequeño'}, {value: 20, name: 'Hotel mediano'}, {value: 30, name: 'Hotel grande'} ] }
+            options={ [ {value: 'select', name: 'Cualquier tamaño'}, {value: 10, name: 'Hotel pequeño'}, {value: 20, name: 'Hotel mediano'}, {value: 30, name: 'Hotel grande'} ] }
             selected={ filters.rooms }
             icon="bed" 
             name="rooms"

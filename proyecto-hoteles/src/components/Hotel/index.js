@@ -3,12 +3,8 @@ import Price from '../Price'
 
 const Hotel = (props) => {
    const { data } = props
-
-   if (data === undefined) { //Primer render aun no tengo data, como hay que hacer?
-        return <div />
-    }
     const {name, description, photo, price, rooms, city, country} = data
-
+    
     return(
         <div className="card">
             <div className="card-image">
@@ -23,13 +19,13 @@ const Hotel = (props) => {
                     <div className="control">
                         <div className="tags has-addons">
                             <span className="tag is-medium is-info"><i className="fas fa-map-marker"></i></span>
-                            <span className="tag is-medium">{city}, {country}</span>
+                            <span className="tag is-medium tag-text">{city}, {country}</span>
                         </div>
                     </div>
                     <div className="control">
                         <div className="tags has-addons">
                             <span className="tag is-medium is-info"><i className="fas fa-bed"></i></span>
-                            <span className="tag is-medium">{rooms} Habitaciones</span>
+                            <span className="tag is-medium tag-text">{rooms} Habitaciones</span>
                         </div>
                     </div>
                     <div className="control">
