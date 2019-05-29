@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
+import Hotel from '../components/Hotel'
 
-class Hotel extends Component {
-    constructor(props){
-        super(props)
-      }
+class HotelPage extends Component {
 
     state = {
         hotel: [],
@@ -21,8 +19,8 @@ class Hotel extends Component {
             const json = await response.json();
             const filtroHotel = json.find(hotel =>hotel.slug === this.props.match.params.slug)
             this.setState({ 
-            hotel: filtroHotel, 
-            isLoading: false
+              hotel: filtroHotel, 
+              isLoading: false
             });
         } catch (error) {
           console.log(error);
@@ -34,25 +32,14 @@ class Hotel extends Component {
             <div>
             {this.state.isLoading && <p>loading...</p>}
             {this.state.hotel && (
-                <section className="hero is-medium is-primary is-bold">
-                    <div className="hero-body">
-                        <div className="container">
-                        <h1 className="title">
-                        {this.state.hotel.name}
-                        </h1>
-                        <h2 className="subtitle">
-                            {this.state.hotel.city}, {this.state.hotel.country}
-                        </h2>
-                        </div>
-                    </div>
-                </section>
+              <Hotel {...this.state.hotel} single="false" />  
             )}
             </div>
         )
     }
 }
 
-export default Hotel;
+export default HotelPage;
 
 
 

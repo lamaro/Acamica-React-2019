@@ -4,7 +4,6 @@ import HotelsEmpty from '../HotelsEmpty'
 
 const Hotels = props => {
     const { hotels } = props
-    console.log(hotels)
     const hotelsRender = hotels.map(hotel => 
         <div key={hotel.slug} className="column is-one-third">
             <Hotel { ...hotel }  />

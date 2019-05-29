@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom'
 
 const Hotel = (props) => {
 
-    const {slug, name, description, photo, price, rooms, city, country} = props
-    
+    const {slug, name, description, photo, price, rooms, city, country, single} = props
     return(
         <div className="card">
             <div className="card-image">
@@ -39,7 +38,8 @@ const Hotel = (props) => {
                 </div>
             </div>
             <div className="card-footer">
-            <Link to={`/hotel/${slug}`}>Ver más</Link>
+            {!single ? <Link to={`/hotel/${slug}`}>Ver más</Link> : <Link to={`/`}>Volver</Link>}
+            
             </div>
         </div>
     )

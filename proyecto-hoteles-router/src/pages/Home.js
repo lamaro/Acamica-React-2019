@@ -4,6 +4,7 @@ import Hero from '../components/Hero'
 import Filters from '../components/Filters'
 import Hotels from '../components/Hotels'
 
+let filtersPersisted = null;
 
 class Home extends Component {
   constructor(){
@@ -38,10 +39,18 @@ class Home extends Component {
         hotels: json, 
         hotelsLoaded: true
       });
+      if (filtersPersisted) {
+        this.setState({ filters: filtersPersisted });
+      }
       this.handleFilterChange(this.state.filters) //Filtra los hoteles con las fechas predefinidas. Actualiza el state.
+      
     } catch (error) {
       console.log(error);
     }
+  }
+
+  componentWillUnmount() {
+    filtersPersisted = this.state.filters;
   }
 
   handleFilter(payload){
