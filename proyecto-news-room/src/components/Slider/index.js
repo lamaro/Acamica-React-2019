@@ -3,10 +3,20 @@ import Slider from "react-slick";
 import NewsItem from '../NewsItem'
  
 class SimpleSlider extends React.Component {
+  constructor(props){
+    super(props)
+    console.log(props.data)
+    this.state = {
+      news: props.data
+    }
+  }
   render() {
-    var settings = {
-      dots: false,
-      arrows: true,
+    const destacadas = this.state.news.map(destacada =>{
+      return (<NewsItem data={destacada} height="500"/>)
+    })
+    const settings = {
+      dots: true,
+      arrows: false,
       infinite: true,
       speed: 500,
       slidesToShow: 1,
@@ -14,10 +24,7 @@ class SimpleSlider extends React.Component {
     };
     return (
       <Slider {...settings}>
-        <NewsItem />
-        <NewsItem />
-        <NewsItem />
-        <NewsItem />
+        {destacadas}
       </Slider>
     );
   }

@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Home from '../../pages/Home'
 import Category from '../../pages/Category'
 import Nav from '../Nav'
+import { randomBytes } from 'crypto';
 
 function App() {
   return (

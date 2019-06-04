@@ -8,6 +8,8 @@ import { fade } from '@material-ui/core/styles/colorManipulator';
 import { makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+import {Link} from 'react-router-dom';
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -76,9 +78,41 @@ function Nav() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
-            Material-UI
-          </Typography>
+          <Link to={{
+              pathname: '/category/politica',
+              state: {
+                catId: 1
+              }
+            }}>Política
+          </Link>
+          <Link to={{
+              pathname: '/category/internacionales',
+              state: {
+                catId: 2
+              }
+            }}>Internacionales
+          </Link>
+          <Link to={{
+              pathname: '/category/tecnologia',
+              state: {
+                catId: 3
+              }
+            }}>Tecnología
+          </Link>
+          <Link to={{
+              pathname: '/category/espectaculos',
+              state: {
+                catId: 4
+              }
+            }}>Espectáculos
+          </Link>
+          <Link to={{
+              pathname: '/category/deportes',
+              state: {
+                catId: 5
+              }
+            }} params={{tes:1}}>Deportes
+          </Link>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
