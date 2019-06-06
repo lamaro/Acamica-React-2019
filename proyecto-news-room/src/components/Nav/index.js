@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -9,6 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import {Link} from 'react-router-dom';
+import MenuDrawer from '../../components/MenuDrawer'
 
 
 const useStyles = makeStyles(theme => ({
@@ -66,11 +67,15 @@ const useStyles = makeStyles(theme => ({
 
 function Nav() {
   const classes = useStyles();
+  const [open,setOpen] = useState(false)
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
+        <MenuDrawer open={open}/>
         <Toolbar>
           <IconButton
+            onClick={()=>setOpen(!open)}
             edge="start"
             className={classes.menuButton}
             color="inherit"

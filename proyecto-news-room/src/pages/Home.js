@@ -2,6 +2,11 @@ import React from 'react'
 import Container from '@material-ui/core/Container'
 import NewsGrid from '../components/NewsGrid'
 import Loading from '../components/Loading'
+import dayjs from 'dayjs'
+import 'dayjs/locale/es'
+
+dayjs.locale('es')
+
 
 class Home extends React.Component {
     constructor(props){
@@ -13,8 +18,10 @@ class Home extends React.Component {
     }
 
     async componentDidMount(){
+        const date = dayjs()
+        const dateFormatted = date.format('YYYY[-]MM[-]DD')
         try {
-            const response = await fetch('https://api.canillitapp.com/latest/2019-06-01');
+            const response = await fetch(`https://api.canillitapp.com/latest/${dateFormatted}`);
             if (!response.ok) {
               throw Error(response.statusText);
             }
