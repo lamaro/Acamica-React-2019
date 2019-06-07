@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import Home from '../../pages/Home'
 import Category from '../../pages/Category'
+import Search from '../../pages/Search'
 import Nav from '../Nav'
-import { randomBytes } from 'crypto';
 
 function App() {
   return (
@@ -15,6 +15,7 @@ function App() {
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/category/:slug" component={Category} />
+            <Route path="/search/:slug" component={Search} />
           </Switch>
       </Router>
     </div>

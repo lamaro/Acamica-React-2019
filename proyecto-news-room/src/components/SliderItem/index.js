@@ -7,8 +7,7 @@ import {Link} from 'react-router-dom';
 
 
   const SliderItem =(props) => {
-    const {title, img_url} = props.data
-      console.log(props.data)
+    const {title, img_url, url} = props.data
       const useStyles = makeStyles(theme => ({
         toolbar: {
           borderBottom: `1px solid ${theme.palette.divider}`,
@@ -71,13 +70,9 @@ import {Link} from 'react-router-dom';
               <Typography component="h1" variant="h3" color="inherit" gutterBottom>
                 {title}
               </Typography>
-              <Typography variant="h5" color="inherit" paragraph>
-                Multiple lines of text that form the lede, informing new readers quickly and
-                efficiently about what&apos;s most interesting in this post&apos;s contents.
-              </Typography>
-              <Link variant="subtitle1" href="#">
-                Continue reading…
-              </Link>
+              <a variant="subtitle1" href={url}>
+                Ver nota
+              </a>
             </div>
           </Grid>
         </Grid>

@@ -34,7 +34,6 @@ class Category extends React.Component {
               news: json, 
               isLoading: false
             });
-            console.log(this.state.news)
         } catch (error) {
             console.log(error);
         }

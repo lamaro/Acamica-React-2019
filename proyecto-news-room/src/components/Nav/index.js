@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { withRouter } from 'react-router-dom'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -9,7 +10,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import {Link} from 'react-router-dom';
-import MenuDrawer from '../../components/MenuDrawer'
 
 
 const useStyles = makeStyles(theme => ({
@@ -18,9 +18,13 @@ const useStyles = makeStyles(theme => ({
   },
   menuButton: {
     marginRight: theme.spacing(2),
+    [theme.breakpoints.between('sm', 'md')]: {
+      display: 'none',
+    }
   },
   title: {
     flexGrow: 1,
+    color:'#fff',
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
@@ -63,39 +67,47 @@ const useStyles = makeStyles(theme => ({
       },
     },
   },
+  menuContent:{
+    width:'100%',
+    display:'flex',
+    justifyContent: 'space-between',
+    color:'#fff'
+  }
 }));
 
-function Nav() {
+function Nav(props) {
   const classes = useStyles();
   const [open,setOpen] = useState(false)
 
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <MenuDrawer open={open}/>
         <Toolbar>
-          <IconButton
-            onClick={()=>setOpen(!open)}
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="Open drawer"
-          >
-            <MenuIcon />
-          </IconButton>
-            <Typography className={classes.title} variant="h6" noWrap>
-            <Link to={'/category/politica'}>Política </Link>
-            <Link to={'/category/internacionales'}>Internacionales </Link>
-            <Link to={'/category/tecnologia'}>Tecnología </Link>
-            <Link to={'/category/espectaculos'}>Espectáculos </Link>
-            <Link to={'/category/deportes'}>Deportes </Link>
-          </Typography>
+          <div className={classes.menuContent}>
+            <IconButton
+              onClick={()=>setOpen(!open)}
+              edge="start"
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="Open drawer"
+            >
+              <MenuIcon />
+            </IconButton>
+              <Typography className={classes.title} variant="h6" noWrap>
+              <Link to={'/'}>Inicio </Link>
+              <Link to={'/category/politica'}>Política </Link>
+              <Link to={'/category/internacionales'}>Internacionales </Link>
+              <Link to={'/category/tecnologia'}>Tecnología </Link>
+              <Link to={'/category/espectaculos'}>Espectáculos </Link>
+              <Link to={'/category/deportes'}>Deportes </Link>
+            </Typography>
+          </div>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
             <InputBase
-              onChange={(event)=>{console.log(event.target.value)}}
+              onKeyPress={(event)=>event.key === 'Enter' ? props.history.push(`/search/${event.target.value}`):null}
               placeholder="Search…"
               classes={{
                 root: classes.inputRoot,
@@ -109,4 +121,4 @@ function Nav() {
   );
 }
 
-export default Nav;
+export default withRouter(Nav);

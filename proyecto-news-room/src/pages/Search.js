@@ -8,11 +8,12 @@ class Search extends React.Component {
         super(props)
         this.state = {
             news: [],
-            isLoading: true
+            isLoading: true,
         }
     }
 
     async fetchSearchNews(){
+        const term = this.props.match.params.slug
           this.setState({
               isLoading:true
           })
@@ -26,7 +27,6 @@ class Search extends React.Component {
               news: json, 
               isLoading: false
             });
-            console.log(this.state.news)
         } catch (error) {
             console.log(error);
         }
