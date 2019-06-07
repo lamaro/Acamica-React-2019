@@ -3,7 +3,7 @@ import Container from '@material-ui/core/Container'
 import NewsGrid from '../components/NewsGrid'
 import Loading from '../components/Loading'
 
-class Category extends React.Component {
+class Search extends React.Component {
     constructor(props){
         super(props)
         this.state = {
@@ -12,20 +12,12 @@ class Category extends React.Component {
         }
     }
 
-    async fetchCategoryNews(){
-        const { slug } = this.props.match.params
-        const categoriesId = {
-            politica: '1',
-            internacionales: '2',
-            tecnologia: '3',
-            espectaculos: '4',
-            deportes: '5',
-          }
+    async fetchSearchNews(){
           this.setState({
               isLoading:true
           })
         try {
-            const response = await fetch(`https://api.canillitapp.com/news/category/${categoriesId[slug]}`);
+            const response = await fetch(`https://api.canillitapp.com/search/${term}`);
             if (!response.ok) {
               throw Error(response.statusText);
             }
@@ -42,12 +34,12 @@ class Category extends React.Component {
 
     componentDidUpdate(prevProps) {
         if (prevProps.match.params.slug !== this.props.match.params.slug) {
-          this.fetchCategoryNews()
+          this.fetchSearchNews()
         }
     }
 
    componentDidMount(){
-        this.fetchCategoryNews()
+        this.fetchSearchNews()
     }
 
     render(){
@@ -61,4 +53,4 @@ class Category extends React.Component {
     )}
 }
 
-export default Category
+export default Search

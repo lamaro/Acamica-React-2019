@@ -1,7 +1,7 @@
 import React from "react";
 import Slider from "react-slick";
-import NewsItem from '../NewsItem'
- 
+import SliderItem from '../SliderItem'
+
 class SimpleSlider extends React.Component {
   constructor(props){
     super(props)
@@ -9,10 +9,13 @@ class SimpleSlider extends React.Component {
     this.state = {
       news: props.data
     }
+    
   }
+
   render() {
     const destacadas = this.state.news.map(destacada =>{
-      return (<NewsItem data={destacada} height="500"/>)
+      console.log(destacada)
+      return (<SliderItem data={destacada}/>)
     })
     const settings = {
       dots: true,

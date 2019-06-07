@@ -83,46 +83,19 @@ function Nav() {
           >
             <MenuIcon />
           </IconButton>
-          <Link to={{
-              pathname: '/category/politica',
-              state: {
-                catId: 1
-              }
-            }}>Política
-          </Link>
-          <Link to={{
-              pathname: '/category/internacionales',
-              state: {
-                catId: 2
-              }
-            }}>Internacionales
-          </Link>
-          <Link to={{
-              pathname: '/category/tecnologia',
-              state: {
-                catId: 3
-              }
-            }}>Tecnología
-          </Link>
-          <Link to={{
-              pathname: '/category/espectaculos',
-              state: {
-                catId: 4
-              }
-            }}>Espectáculos
-          </Link>
-          <Link to={{
-              pathname: '/category/deportes',
-              state: {
-                catId: 5
-              }
-            }} params={{tes:1}}>Deportes
-          </Link>
+            <Typography className={classes.title} variant="h6" noWrap>
+            <Link to={'/category/politica'}>Política </Link>
+            <Link to={'/category/internacionales'}>Internacionales </Link>
+            <Link to={'/category/tecnologia'}>Tecnología </Link>
+            <Link to={'/category/espectaculos'}>Espectáculos </Link>
+            <Link to={'/category/deportes'}>Deportes </Link>
+          </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
             <InputBase
+              onChange={(event)=>{console.log(event.target.value)}}
               placeholder="Search…"
               classes={{
                 root: classes.inputRoot,
