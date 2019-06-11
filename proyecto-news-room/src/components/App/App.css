@@ -9,3 +9,17 @@ body{margin: 0;}
     color: #fff;
     background-color: #005FA0!important;
 }
+
+.MuiTypography-h5 {
+    font-size: 15px!important;
+}
+
+.MuiTypography-h3 {    
+    font-size: 25px!important;
+    position: relative;
+    top: 150px;
+}
+
+.slick-dots {
+    bottom: -10px!important;
+}

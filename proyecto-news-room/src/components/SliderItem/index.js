@@ -3,8 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import {Link} from 'react-router-dom';
-
 
   const SliderItem =(props) => {
     const {title, img_url, url} = props.data
@@ -32,7 +30,8 @@ import {Link} from 'react-router-dom';
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',
-          maxHeight:'320px'
+          maxHeight:'320px',
+          minHeight:'320px',
         },
         overlay: {
           position: 'absolute',
@@ -50,6 +49,13 @@ import {Link} from 'react-router-dom';
             paddingRight: 0,
           },
         },  
+        link: {
+          color:'#fff',
+          textDecoration:'none',
+          position: 'relative',
+          top: '150px',
+          fontFamily:'Roboto'
+        }, 
       }));
 
     const classes = useStyles();
@@ -70,7 +76,7 @@ import {Link} from 'react-router-dom';
               <Typography component="h1" variant="h3" color="inherit" gutterBottom>
                 {title}
               </Typography>
-              <a variant="subtitle1" href={url}>
+              <a className={classes.link} variant="subtitle1" href={url}>
                 Ver nota
               </a>
             </div>

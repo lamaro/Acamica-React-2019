@@ -1,15 +1,15 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { withRouter } from 'react-router-dom'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import {Link} from 'react-router-dom';
+import logo from '../../imgs/logoNews.png';
 
 
 const useStyles = makeStyles(theme => ({
@@ -22,9 +22,11 @@ const useStyles = makeStyles(theme => ({
       display: 'none',
     }
   },
-  title: {
+  menu: {
     flexGrow: 1,
-    color:'#fff',
+    color:'white',
+    margin: 'o auto',
+    fontFamily: 'Roboto',
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
@@ -68,16 +70,25 @@ const useStyles = makeStyles(theme => ({
     },
   },
   menuContent:{
-    width:'100%',
-    display:'flex',
-    justifyContent: 'space-between',
-    color:'#fff'
+    width:'100%'
+
+  },
+  link:{
+    color:'#fff',
+    marginRight: '10px',
+    fontSize: '15px',
+    lineHeight:'30px',
+    verticalAlign:'super'
+
+  },
+  logo:{
+    width:'220px',
+    marginRight:'30px'
   }
 }));
 
 function Nav(props) {
   const classes = useStyles();
-  const [open,setOpen] = useState(false)
 
   return (
     <div className={classes.root}>
@@ -85,7 +96,6 @@ function Nav(props) {
         <Toolbar>
           <div className={classes.menuContent}>
             <IconButton
-              onClick={()=>setOpen(!open)}
               edge="start"
               className={classes.menuButton}
               color="inherit"
@@ -93,14 +103,15 @@ function Nav(props) {
             >
               <MenuIcon />
             </IconButton>
-              <Typography className={classes.title} variant="h6" noWrap>
-              <Link to={'/'}>Inicio </Link>
-              <Link to={'/category/politica'}>Política </Link>
-              <Link to={'/category/internacionales'}>Internacionales </Link>
-              <Link to={'/category/tecnologia'}>Tecnología </Link>
-              <Link to={'/category/espectaculos'}>Espectáculos </Link>
-              <Link to={'/category/deportes'}>Deportes </Link>
-            </Typography>
+            <img className={classes.logo} src={logo} alt="Logo" />
+            <div className={classes.menu}>
+              <Link className={classes.link} to={'/'}>Inicio </Link>
+              <Link className={classes.link} to={'/category/politica'}>Política </Link>
+              <Link className={classes.link} to={'/category/internacionales'}>Internacionales </Link>
+              <Link className={classes.link} to={'/category/tecnologia'}>Tecnología </Link>
+              <Link className={classes.link} to={'/category/espectaculos'}>Espectáculos </Link>
+              <Link className={classes.link} to={'/category/deportes'}>Deportes </Link>
+            </div>
           </div>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
@@ -108,7 +119,7 @@ function Nav(props) {
             </div>
             <InputBase
               onKeyPress={(event)=>event.key === 'Enter' ? props.history.push(`/search/${event.target.value}`):null}
-              placeholder="Search…"
+              placeholder="Buscar…"
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
